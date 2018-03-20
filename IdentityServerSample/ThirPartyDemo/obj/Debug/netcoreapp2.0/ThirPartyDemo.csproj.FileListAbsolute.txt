@@ -1,0 +1,11 @@
+E:\学习\jessetalk\IdentityServerSample\ThirPartyDemo\bin\Debug\netcoreapp2.0\ThirPartyDemo.deps.json
+E:\学习\jessetalk\IdentityServerSample\ThirPartyDemo\bin\Debug\netcoreapp2.0\ThirPartyDemo.runtimeconfig.json
+E:\学习\jessetalk\IdentityServerSample\ThirPartyDemo\bin\Debug\netcoreapp2.0\ThirPartyDemo.runtimeconfig.dev.json
+E:\学习\jessetalk\IdentityServerSample\ThirPartyDemo\bin\Debug\netcoreapp2.0\ThirPartyDemo.dll
+E:\学习\jessetalk\IdentityServerSample\ThirPartyDemo\obj\Debug\netcoreapp2.0\ThirPartyDemo.csprojResolveAssemblyReference.cache
+E:\学习\jessetalk\IdentityServerSample\ThirPartyDemo\obj\Debug\netcoreapp2.0\ThirPartyDemo.csproj.CoreCompileInputs.cache
+E:\学习\jessetalk\IdentityServerSample\ThirPartyDemo\obj\Debug\netcoreapp2.0\ThirPartyDemo.AssemblyInfoInputs.cache
+E:\学习\jessetalk\IdentityServerSample\ThirPartyDemo\obj\Debug\netcoreapp2.0\ThirPartyDemo.AssemblyInfo.cs
+E:\学习\jessetalk\IdentityServerSample\ThirPartyDemo\bin\Debug\netcoreapp2.0\ThirPartyDemo.pdb
+E:\学习\jessetalk\IdentityServerSample\ThirPartyDemo\obj\Debug\netcoreapp2.0\ThirPartyDemo.dll
+E:\学习\jessetalk\IdentityServerSample\ThirPartyDemo\obj\Debug\netcoreapp2.0\ThirPartyDemo.pdb

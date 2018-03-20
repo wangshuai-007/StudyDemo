@@ -1,0 +1,11 @@
+E:\学习\jessetalk\IdentityServerSample\IdentityServerCenter\bin\Debug\netcoreapp2.0\IdentityServerCenter.deps.json
+E:\学习\jessetalk\IdentityServerSample\IdentityServerCenter\bin\Debug\netcoreapp2.0\IdentityServerCenter.runtimeconfig.json
+E:\学习\jessetalk\IdentityServerSample\IdentityServerCenter\bin\Debug\netcoreapp2.0\IdentityServerCenter.runtimeconfig.dev.json
+E:\学习\jessetalk\IdentityServerSample\IdentityServerCenter\bin\Debug\netcoreapp2.0\IdentityServerCenter.dll
+E:\学习\jessetalk\IdentityServerSample\IdentityServerCenter\obj\Debug\netcoreapp2.0\IdentityServerCenter.csprojResolveAssemblyReference.cache
+E:\学习\jessetalk\IdentityServerSample\IdentityServerCenter\obj\Debug\netcoreapp2.0\IdentityServerCenter.csproj.CoreCompileInputs.cache
+E:\学习\jessetalk\IdentityServerSample\IdentityServerCenter\obj\Debug\netcoreapp2.0\IdentityServerCenter.AssemblyInfoInputs.cache
+E:\学习\jessetalk\IdentityServerSample\IdentityServerCenter\obj\Debug\netcoreapp2.0\IdentityServerCenter.AssemblyInfo.cs
+E:\学习\jessetalk\IdentityServerSample\IdentityServerCenter\bin\Debug\netcoreapp2.0\IdentityServerCenter.pdb
+E:\学习\jessetalk\IdentityServerSample\IdentityServerCenter\obj\Debug\netcoreapp2.0\IdentityServerCenter.dll
+E:\学习\jessetalk\IdentityServerSample\IdentityServerCenter\obj\Debug\netcoreapp2.0\IdentityServerCenter.pdb
