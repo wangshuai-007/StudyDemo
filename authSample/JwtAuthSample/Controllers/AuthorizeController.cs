@@ -16,7 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 namespace JwtAuthSample.Controllers
 {
     //[Route("Authorize/[controller]")]
-    //[Authorize(Policy = "SuperAdminOnly")]
+    [Authorize(Policy = "SuperAdminOnly",Roles = "admin")]
     public class AuthorizeController : Controller
     {
         private JwtSettings _jwtSettings;

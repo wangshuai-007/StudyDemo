@@ -32,19 +32,35 @@ namespace JwtAuthSample
             var setttings=new JwtSettings();
             Configuration.Bind("JwtSettings",setttings);
             services.AddMvc();
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("SuperAdminOnly", policy => { policy.RequireClaim("SuperAdminOnly"); });
+            });
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme=JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
             })
             .AddJwtBearer(o =>
                 {
-                    o.TokenValidationParameters=new TokenValidationParameters()
+                    //o.TokenValidationParameters=new TokenValidationParameters()
+                    //{
+                    //    ValidAudience = setttings.Audience,
+                    //    ValidIssuer = setttings.Issuer,
+                    //    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(setttings.SecretKey))
+                    //};
+
+                    o.SecurityTokenValidators.Clear();
+                    o.SecurityTokenValidators.Add(new MyTokenValidator());
+
+                    o.Events=new JwtBearerEvents()
                     {
-                        ValidAudience = setttings.Audience,
-                        ValidIssuer = setttings.Issuer,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(setttings.SecretKey))
+                        OnMessageReceived = context =>
+                        {
+                            var token = context.Request.Headers["myToken"];
+                            context.Token = token.FirstOrDefault();
+                            return Task.CompletedTask;
+                        }
                     };
                 });
         }

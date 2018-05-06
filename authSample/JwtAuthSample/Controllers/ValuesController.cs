@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace JwtAuthSample.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "admin",Policy = "SuperAdminOnly")]
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
