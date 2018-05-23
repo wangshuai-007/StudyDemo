@@ -38,6 +38,7 @@ namespace MvcCookieAuthSample.Controllers
             }
         }
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login(string returnUrl=null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -45,7 +46,7 @@ namespace MvcCookieAuthSample.Controllers
             return View();
         }
         [HttpPost]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(RegisterViewModel register,string returnUrl=null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -58,7 +59,7 @@ namespace MvcCookieAuthSample.Controllers
             return RedirectToLocal(returnUrl);
         }
         [HttpPost]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterViewModel register,string returnUrl=null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -83,7 +84,7 @@ namespace MvcCookieAuthSample.Controllers
             return View();
         }
         [HttpGet]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
