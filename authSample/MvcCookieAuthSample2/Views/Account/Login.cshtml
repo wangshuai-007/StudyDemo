@@ -9,13 +9,14 @@
 <div class="row">
 <div class="col-md-4">
     <section>
-        <form method="post" asp-controller="Account" asp-action="Login" >
+        <form method="post" asp-controller="Account" asp-route-returnUrl="@ViewData["ReturnUrl"]" asp-action="Login" >
             <h4>Use a local account to log in.</h4>
             <hr />
             <div class="form-group">
                 <label asp-for="Email"></label>
                 <input asp-for="Email" class="form-control" />
             </div>
+            <div>值为：@ViewData["ReturnUrl"]</div>
             <div class="form-group">
                 <label asp-for="Password"></label>
                 <input asp-for="Password" class="form-control" />

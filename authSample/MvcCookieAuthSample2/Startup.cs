@@ -53,7 +53,7 @@ namespace MvcCookieAuthSample
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseExceptionless("zkAMxhVTiaKzaR5rOs6pRpOrivsmr2zoy3AY1V73");
+            //app.UseExceptionless("zkAMxhVTiaKzaR5rOs6pRpOrivsmr2zoy3AY1V73");
             //app.UseExceptionless("gTlj5oy99pAPcBHA81PMCjKlDOitotAoN9e30EAT");
             if (env.IsDevelopment())
             {
