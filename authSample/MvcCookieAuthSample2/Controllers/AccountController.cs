@@ -14,6 +14,7 @@ using MvcCookieAuthSample.ViewModels;
 
 namespace MvcCookieAuthSample.Controllers
 {
+    //[Authorize]
     public class AccountController : Controller
     {
         private UserManager<ApplicationUser> _userManager;
@@ -24,25 +25,45 @@ namespace MvcCookieAuthSample.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
-        public IActionResult Login()
+
+        private IActionResult RedirectToLocal(string retureUrl)
         {
+            if (Url.IsLocalUrl(retureUrl))
+            {
+                return Redirect(retureUrl);
+            }
+            else
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+        }
+        [HttpGet]
+        public IActionResult Login(string returnUrl=null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Login(RegisterViewModel register)
+        //[AllowAnonymous]
+        public async Task<IActionResult> Login(RegisterViewModel register,string returnUrl=null)
         {
+            ViewData["ReturnUrl"] = returnUrl;
             var user = await _userManager.FindByEmailAsync(register.Email);
             if (user == null)
             {
                 
             }
             await _signInManager.SignInAsync(user, new AuthenticationProperties() {IsPersistent = true});
-            return RedirectToAction("Index", "Home");
+            return RedirectToLocal(returnUrl);
         }
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel register)
+        //[AllowAnonymous]
+        public async Task<IActionResult> Register(RegisterViewModel register,string returnUrl=null)
         {
-            var identityUser=new ApplicationUser()
+            ViewData["ReturnUrl"] = returnUrl;
+
+            var identityUser =new ApplicationUser()
             {
                 Email = register.Email,
                 NormalizedEmail = register.Email,
@@ -56,12 +77,13 @@ namespace MvcCookieAuthSample.Controllers
             if (identityResult.Succeeded)
             {
                 await _signInManager.SignInAsync(identityUser, new AuthenticationProperties() {IsPersistent = true});
-                return RedirectToAction("Index", "Home");
+                return RedirectToLocal(returnUrl);
             }
 
             return View();
         }
-
+        [HttpGet]
+        //[AllowAnonymous]
         public IActionResult Register()
         {
             return View();
