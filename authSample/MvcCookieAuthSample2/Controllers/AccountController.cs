@@ -14,7 +14,7 @@ using MvcCookieAuthSample.ViewModels;
 
 namespace MvcCookieAuthSample.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class AccountController : Controller
     {
         private UserManager<ApplicationUser> _userManager;
