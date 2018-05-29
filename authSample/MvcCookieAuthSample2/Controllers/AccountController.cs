@@ -32,10 +32,7 @@ namespace MvcCookieAuthSample.Controllers
             {
                 return Redirect(retureUrl);
             }
-            else
-            {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
-            }
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
         [HttpGet]
         [AllowAnonymous]
