@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MvcCookieAuthSample.ViewModels
-{ 
-    public class RegisterViewModel
+namespace MvcCookieAuthSample.Models.AccountViewModel
+{
+    public class LoginViewModel
     {
         [Required]
         [DataType(DataType.EmailAddress)]
@@ -14,8 +14,5 @@ namespace MvcCookieAuthSample.ViewModels
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        [Required]
-        [DataType(DataType.Password)]
-        public string ConfirmPassword { get; set; }
     }
 }

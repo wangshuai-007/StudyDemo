@@ -10,11 +10,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MvcCookieAuthSample.Data;
+using MvcCookieAuthSample.Models.AccountViewModel;
 using MvcCookieAuthSample.ViewModels;
 
 namespace MvcCookieAuthSample.Controllers
 {
     [Authorize]
+    [AllowAnonymous]
+
     public class AccountController : Controller
     {
         private UserManager<ApplicationUser> _userManager;
@@ -37,8 +40,16 @@ namespace MvcCookieAuthSample.Controllers
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
         }
+
+        private void AddErrors(IdentityResult identityResult)
+        {
+            foreach (var error in identityResult.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+
+            }
+        }
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult Login(string returnUrl=null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -46,45 +57,59 @@ namespace MvcCookieAuthSample.Controllers
             return View();
         }
         [HttpPost]
-        [AllowAnonymous]
-        public async Task<IActionResult> Login(RegisterViewModel register,string returnUrl=null)
+        //[AllowAnonymous]
+        public async Task<IActionResult> Login(LoginViewModel register,string returnUrl=null)
         {
-            ViewData["ReturnUrl"] = returnUrl;
-            var user = await _userManager.FindByEmailAsync(register.Email);
-            if (user == null)
+            if (ModelState.IsValid)
             {
-                
+                ViewData["ReturnUrl"] = returnUrl;
+                var user = await _userManager.FindByEmailAsync(register.Email);
+                if (user == null)
+                {
+
+                }
+                await _signInManager.SignInAsync(user, new AuthenticationProperties() {IsPersistent = true});
+
+                return RedirectToLocal(returnUrl);
             }
-            await _signInManager.SignInAsync(user, new AuthenticationProperties() {IsPersistent = true});
-            return RedirectToLocal(returnUrl);
+            return View();
+
         }
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public async Task<IActionResult> Register(RegisterViewModel register,string returnUrl=null)
         {
-            ViewData["ReturnUrl"] = returnUrl;
-
-            var identityUser =new ApplicationUser()
+            if (ModelState.IsValid)
             {
-                Email = register.Email,
-                NormalizedEmail = register.Email,
-                UserName = register.Email,
-            };
+                ViewData["ReturnUrl"] = returnUrl;
 
-            ExceptionlessClient.Default.SubmitLog("test");
+                var identityUser = new ApplicationUser()
+                {
+                    Email = register.Email,
+                    NormalizedEmail = register.Email,
+                    UserName = register.Email,
+                };
 
-            var identityResult = await _userManager.CreateAsync(identityUser, register.Password);
+                ExceptionlessClient.Default.SubmitLog("test");
 
-            if (identityResult.Succeeded)
-            {
-                await _signInManager.SignInAsync(identityUser, new AuthenticationProperties() {IsPersistent = true});
-                return RedirectToLocal(returnUrl);
+                var identityResult = await _userManager.CreateAsync(identityUser, register.Password);
+
+                if (identityResult.Succeeded)
+                {
+                    await _signInManager.SignInAsync(identityUser,
+                        new AuthenticationProperties() {IsPersistent = true});
+                    return RedirectToLocal(returnUrl);
+                }
+                else
+                {
+                    AddErrors(identityResult);
+                }
             }
 
             return View();
         }
         [HttpGet]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public IActionResult Register()
         {
             return View();
